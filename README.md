@@ -1,13 +1,14 @@
 
-## Suggestion & Answer 
-`Jika Data bertambah 100x dari Data saat ini, hal yang bisa dilakukan untuk mengoptimalkan query deteksi anomali data dari Total Revenue Daily adalah.`
-`A.Snowflake`
-    `1. Gunakan Auto-Suspend jika terjadi penggunaan resource yang berlebih Ketika melakukan Query Pengecekan Total Revenue Daily`
-    `2. Lakukan Monitor Query profile Ketika menjalankan Data Integration & Pengecekan Total Revenue Daily`
-`B.DBT`
-    `1. Lakukan penyesuaian update data pada Model DQ Query Pengecekan Total Revenue Daily ke Incremental Process`
-    `2. Tambahkan Filter pada Data untuk mendapatkan data New atau data changed`
-    `3. Tambahkan partition FLAG_ANOMALY pada Table DQ_DAILY_REVENUE`
+## 💡 Scalability & Anomaly Detection — Answer
+
+> **Pertanyaan:** Jika data bertambah **100x** dari data saat ini, hal apa yang bisa dilakukan untuk mengoptimalkan query deteksi anomali dari **Total Revenue Daily**?
+> 
+### A. Snowflake Optimization
+#### 1. Auto-Suspend & Auto-Resume Warehouse
+Gunakan **Auto-Suspend** untuk mencegah penggunaan resource yang berlebih saat menjalankan query pengecekan Total Revenue Daily.
+#### 2. Monitor Query Profile
+Lakukan monitoring **Query Profile** saat menjalankan Query pengecekan Total Revenue Daily.
+
 
 ## Dataset
 [Brazilian E-Commerce by Olist](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce) from Kaggle.
