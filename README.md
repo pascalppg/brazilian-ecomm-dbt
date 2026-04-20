@@ -1,13 +1,16 @@
 
-## 💡 Scalability & Anomaly Detection — Answer
+## Anomaly Detection Total Revenue Answer — Answer
 
 > **Pertanyaan:** Jika data bertambah **100x** dari data saat ini, hal apa yang bisa dilakukan untuk mengoptimalkan query deteksi anomali dari **Total Revenue Daily**?
 > 
 ### A. Snowflake Optimization
-#### 1. Auto-Suspend & Auto-Resume Warehouse
-Gunakan **Auto-Suspend** untuk mencegah penggunaan resource yang berlebih saat menjalankan query pengecekan Total Revenue Daily.
-#### 2. Monitor Query Profile
-Lakukan monitoring **Query Profile** saat menjalankan Query pengecekan Total Revenue Daily.
+#### 1. Lakukan **Auto-Suspend** untuk mencegah penggunaan resource yang berlebih saat menjalankan query pengecekan Total Revenue Daily.
+#### 2. Lakukan monitoring **Query Profile** saat menjalankan Query pengecekan Total Revenue Daily.
+
+### B. DBT Optimization
+#### 1. Lakukan penyesuaian update data pada Model DQ Query Pengecekan Total Revenue Daily ke Incremental Process
+#### 2. Tambahkan Filter pada Data untuk mendapatkan data New atau data changed
+#### 3. Tambahkan partition FLAG_ANOMALY pada Table DQ_DAILY_REVENUE
 
 
 ## Dataset
