@@ -18,14 +18,7 @@
 
 ## Models (17 total)
 
-### Staging (RAW) (5)
-- `orders` 
-- `order_items`
-- `customers` 
-- `products` 
-- `payments`
-
-### Staging (CLEANSING & STANDARDIZE) (5)
+### Staging (Cleansing & Standardize) (5)
 - `stg_orders_clean` 
 - `stg_order_items_clean`
 - `stg_customers_clean`
