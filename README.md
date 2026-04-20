@@ -45,7 +45,7 @@
 - `dq_daily_revenue` — as Check Anomaly Total Revenue Daily
 
 ## Stack
-- **Snowflake** —
+- **Snowflake**
 - **dbt=1.11.8**
 - **Python 3.12.7**
 - **VS Code** 
