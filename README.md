@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 ## Suggestion & Answer 
 `Jika Data bertambah 100x dari Data saat ini, hal yang bisa dilakukan untuk mengoptimalkan query deteksi anomali data dari Total Revenue Daily adalah.`
 `A.Snowflake`
@@ -56,6 +56,3 @@
 ## Author
 `Pascal Parlindungan Gultom`
 =======
-# brazilian-ecomm-dbt
-Brazilian E-Commerce Data Warehouse using dbt and Snowflake for Technical Test
->>>>>>> 5355291489eba28023c53724185f6bc09b2243c1
