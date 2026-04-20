@@ -35,10 +35,10 @@
 - `dim_product`
 - `dim_seller`
 
-### Facts (2)
+### Facts (3)
 - `fact_orders`
 - `fact_order_payments`
-- `Fact_daily_revenue`
+- `fact_daily_revenue`
   
 ### Mart (2)
 - `mart_sales` — as monthly revenue by state
