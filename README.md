@@ -49,6 +49,7 @@
 ### Mart (2)
 - `mart_sales` — as monthly revenue by state
 - `mart_customers` — as 360° customer view with segments
+- `dq_daily_revenue` — as Check Anomaly Total Revenue Daily
 
 ## Stack
 - **Snowflake** —
