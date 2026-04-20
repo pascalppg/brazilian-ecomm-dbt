@@ -1,0 +1,249 @@
+version: 1
+
+models:
+  
+  # DIMENSION TABLES
+
+  - name: dim_customers
+    description: ""
+    columns:
+      - name: customer_sk
+        description: "Surrogate primary key from Customer_id"
+        tests:
+          - unique
+          - not_null
+
+      - name: customer_id
+        description: "Natural key Data Customer"
+        tests:
+          - not_null
+
+      - name: customer_unique_id
+        description: "Unique Person identifier"
+        tests:
+          - not_null
+
+      - name: city
+        tests:
+          - not_null
+
+      - name: state
+        tests:
+          - not_null
+
+      - name: is_current
+        description: ""
+        tests:
+          - not_null
+          - accepted_values:
+              values: [true, false]
+
+  - name: dim_products
+    description: ""
+    columns:
+      - name: product_sk
+        description: "Surrogate primary key from product_id"
+        tests:
+          - unique
+          - not_null
+
+      - name: product_id
+        description: "Natural key from Data Product"
+        tests:
+          - not_null
+
+      - name: category_name
+        description: "If null Defaults to 'unknown'."
+        tests:
+          - not_null
+
+      - name: is_current
+        tests:
+          - not_null
+          - accepted_values:
+              values: [true, false]
+
+  - name: dim_seller
+    description: ""
+    columns:
+      - name: seller_sk
+        description: "Surrogate primary key from seller_id"
+        tests:
+          - unique
+          - not_null
+
+      - name: seller_id
+        description: "Natural key from Dimension Seller"
+        tests:
+          - unique
+          - not_null
+
+      - name: lifetime_revenue
+        description: "Total revenue across all orders"
+        tests:
+          - not_null
+
+  - name: dim_date
+    description: "2016-2026"
+    columns:
+      - name: date_day
+        description: "Primary key — the calendar date"
+        tests:
+          - unique
+          - not_null
+
+      - name: date_key
+        description: "Integer surrogate key in YYYYMMDD format (e.g. 20180501)"
+        tests:
+          - unique
+          - not_null
+
+      - name: is_weekend
+        tests:
+          - not_null
+          - accepted_values:
+              values: [true, false]
+
+  # FACT TABLES
+
+  - name: fact_orders
+    description: ""
+    columns:
+      - name: order_sk
+        description: "Surrogate primary key for the order fact"
+        tests:
+          - unique
+          - not_null
+
+      - name: order_id
+        description: "Natural key Data Orders"
+        tests:
+          - unique
+          - not_null
+
+      - name: customer_sk
+        description: "Foreign key to dim_customers.customer_sk"
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_customers')
+              field: customer_sk
+
+      - name: purchase_date_key
+        description: "Foreign key to dim_date.date_key"
+        tests:
+          - relationships:
+              to: ref('dim_date')
+              field: date_key
+
+      - name: delivery_date_key
+        description: "Foreign key to dim_date.date_key"
+        tests:
+          - relationships:
+              to: ref('dim_date')
+              field: date_key
+
+      - name: order_status
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['approved','shipped','unavailable','processing',
+                       'created','invoiced','canceled','delivered']
+
+      - name: order_gross_total
+        description: "Total order Value"
+        tests:
+          - not_null
+
+      - name: item_count
+        description: "Number of Items"
+        tests:
+          - not_null
+
+      - name: is_delivered_on_time
+        tests:
+          - accepted_values:
+              values: [true, false]
+
+  - name: fact_order_payments
+    description: ""
+    columns:
+      - name: payment_sk
+        description: "Surrogate primary key (order_id and payment_sequential)"
+        tests:
+          - unique
+          - not_null
+
+      - name: order_id
+        description: "Natural key link to fact_orders"
+        tests:
+          - not_null
+
+      - name: order_sk
+        description: "Foreign key to link fact_orders.order_sk"
+        tests:
+          - not_null
+          - relationships:
+              to: ref('fact_orders')
+              field: order_sk
+
+      - name: customer_sk
+        description: "Foreign key to link dim_customers.customer_sk"
+        tests:
+          - relationships:
+              to: ref('dim_customers')
+              field: customer_sk
+
+      - name: payment_type
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['credit_card','boleto','voucher','debit_card',
+                       'not_defined']
+
+      - name: payment_value
+        description: "Payment amount in BRL"
+        tests:
+          - not_null
+
+  # MART TABLES
+
+  - name: mart_sales
+    description: ""
+    columns:
+      - name: gross_revenue
+        description: "Total revenue"
+        tests:
+          - not_null
+
+      - name: total_orders
+        description: "Count of distinct orders"
+        tests:
+          - not_null
+
+      - name: on_time_pct
+        description: "Percentage of orders delivered"
+
+  - name: mart_customers
+    description: ""
+    columns:
+      - name: customer_sk
+        description: "Surrogate primary key as a foreign key to dim_customers"
+        tests:
+          - unique
+          - not_null
+          - relationships:
+              to: ref('dim_customers')
+              field: customer_sk
+
+      - name: value_segment
+        description: "Value Segment : no_spend/low_value/mid_value/high_value"
+        tests:
+          - accepted_values:
+              values: ['no_spend','low_value','mid_value','high_value']
+
+      - name: order_frequency_segment
+        description: "Order Segment: no_orders/one_time/repeat/loyal"
+        tests:
+          - accepted_values:
+              values: ['no_orders','one_time','repeat','loyal']

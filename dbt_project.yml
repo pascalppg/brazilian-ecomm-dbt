@@ -1,0 +1,40 @@
+name: 'brazilian_ecomm_warehouse'
+version: '1.0.0'
+config-version: 2
+
+profile: 'brazilian_ecomm_warehouse'
+
+model-paths: ["models"]
+test-paths: ["tests"]
+macro-paths: ["macros"]
+target-path: "target"
+clean-targets: ["target", "dbt_packages"]
+
+models:
+  brazilian_ecomm_warehouse:
+
+    staging:
+      +schema: STAGING
+      +materialized: view
+      +tags: ['staging']
+
+    intermediate:
+      +schema: INTERMEDIATE
+      +materialized: view
+      +tags: ['intermediate']
+
+    core:
+      +schema: CORE
+      +materialized: table
+      +tags: ['core']
+
+    mart:
+      +schema: MART
+      +materialized: table
+      +tags: ['mart']
+
+snapshots:
+  brazilian_ecomm_warehouse:
+    +target_schema: SNAPSHOTS
+    +strategy: timestamp
+    +updated_at: processed_at

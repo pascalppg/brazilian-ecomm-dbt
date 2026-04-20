@@ -1,0 +1,17 @@
+version: 2
+
+sources:
+  - name: staging
+    database: BRAZILIAN_ECOMM_DB
+    schema: STAGING
+    tables:
+      - name: orders
+        description: "Raw Data Orders from Kaggle directly Upload"
+      - name: order_items
+        description: "Raw Data Order Items from Kaggle directly Upload"
+      - name: customers
+        description: "Raw Data Customer from Kaggle directly Upload"
+      - name: products
+        description: "Raw Data Product Catalog from Kaggle directly Upload"
+      - name: payments
+        description: "Raw Data Payment Transaction from Kaggle directly Upload"

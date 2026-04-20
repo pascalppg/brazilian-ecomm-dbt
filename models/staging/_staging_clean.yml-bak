@@ -1,0 +1,48 @@
+version: 1
+
+models:
+  - name: stg_orders_clean
+    description: "Check Accepted values pada Order Status"
+    columns:
+      - name: order_id
+        tests: [unique, not_null]
+      - name: order_status
+        tests:
+          - accepted_values:
+              values: ['approved','shipped','unavailable','processing',
+                       'created','invoiced','canceled','delivered']
+              severity: warn
+
+  - name: stg_order_items_clean
+    description: "Check order_id apakah Null?"
+    columns:
+      - name: order_id
+        tests:
+          - not_null:
+              severity: warn
+
+  - name: stg_customers_clean
+    description: "Check Customer_id apakah Null dan Unique?"
+    columns:
+      - name: customer_id
+        tests:
+          - not_null:
+              severity: warn
+
+  - name: stg_products_clean
+    description: "Check Product_id apakah Null dan Unique?"
+    columns:
+      - name: product_id
+        tests:
+          - not_null:
+              severity: warn
+          - unique:
+              severity: warn
+
+  - name: stg_payments_clean
+    description: "Check Order_Id apakah Null?"
+    columns:
+      - name: order_id
+        tests:
+          - not_null:
+              severity: warn
