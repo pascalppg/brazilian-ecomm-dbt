@@ -1,4 +1,3 @@
-<img width="208" height="49" alt="image" src="https://github.com/user-attachments/assets/59f5c757-001c-4d43-9b9e-865a4ea83ab5" />
 ## Anomaly Detection Total Revenue Answer — Answer
 
 > **Pertanyaan:** Jika data bertambah **100x** dari data saat ini, hal apa yang bisa dilakukan untuk mengoptimalkan query deteksi anomali dari **Total Revenue Daily**?
